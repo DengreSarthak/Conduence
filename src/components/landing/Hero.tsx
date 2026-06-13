@@ -51,15 +51,11 @@ export function Hero() {
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.05, ease: "easeOut" }}
-          className="mt-8 max-w-4xl text-balance text-5xl leading-[0.96] tracking-tight text-white md:text-[6.5rem]"
-          style={{
-            fontFamily: '"Cormorant Garamond", "Playfair Display", Georgia, serif',
-            fontWeight: 500,
-          }}
+          className="mt-8 max-w-4xl text-balance font-display text-5xl leading-[0.92] tracking-[-0.02em] text-white md:text-[6.5rem]"
         >
           AI agents that
           <br />
-          <em className="italic font-light text-white">think with you</em>
+          <em className="font-display font-normal italic">think with you</em>
         </motion.h1>
 
         <motion.p

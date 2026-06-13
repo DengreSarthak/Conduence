@@ -19,16 +19,8 @@ export function Solution() {
   return (
     <section id="solution" className="relative py-32 px-6 bg-white text-black">
       <div className="mx-auto max-w-6xl">
-        <p
-          className="text-[10px] tracking-[0.4em] text-black/50 mb-6"
-          style={{ fontFamily: '"Michroma", sans-serif' }}
-        >
-          [ THE SOLUTION ]
-        </p>
-        <h2
-          className="text-4xl sm:text-5xl tracking-[0.02em] text-balance max-w-3xl leading-[1.1]"
-          style={{ fontFamily: '"Michroma", sans-serif' }}
-        >
+        
+        <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-balance max-w-3xl">
           Orchestrate agents. Keep the human gate.
         </h2>
         <p className="mt-6 max-w-2xl text-lg text-black/60">
@@ -77,13 +69,10 @@ export function Solution() {
 
           {/* Right copy */}
           <div>
-            <p
-              className="text-[10px] tracking-[0.4em] text-black/40 mb-4"
-              style={{ fontFamily: '"Michroma", sans-serif' }}
-            >
+            <p className="text-[10px] font-semibold tracking-[0.4em] text-black/40 mb-4">
               [ VISUAL BUILDER ]
             </p>
-            <h3 className="text-4xl sm:text-5xl font-semibold leading-[1.05] tracking-tight">
+            <h3 className="text-4xl sm:text-5xl font-display leading-[1.05] tracking-tight">
               Design it.
             </h3>
             <p className="mt-6 text-lg text-black/60 max-w-md">
@@ -104,7 +93,7 @@ export function Solution() {
           </div>
         </div>
 
-        <p className="mt-20 text-3xl font-black tracking-tight text-balance max-w-2xl">
+        <p className="mt-20 text-3xl font-display tracking-tight text-balance max-w-2xl">
           You stay in control. <span className="text-black/40">The agents handle the scale.</span>
         </p>
       </div>
@@ -128,21 +117,13 @@ export function Reasoning() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="text-balance font-black uppercase leading-[0.95] tracking-[-0.02em]"
+          className="text-balance font-display uppercase leading-[0.95] tracking-[-0.02em]"
           style={{ fontSize: "clamp(2.5rem, 7vw, 7rem)" }}
         >
           The edge isn't the position.
           <br />
-          It's the <span className="italic font-light">reasoning.</span>
+          It's the <span className="font-normal italic">reasoning.</span>
         </motion.h2>
-
-        {/* Crosshair divider */}
-        <div className="my-20 flex justify-center">
-          <svg width="40" height="40" viewBox="0 0 40 40" className="text-black">
-            <line x1="20" y1="4" x2="20" y2="36" stroke="currentColor" strokeWidth="1" />
-            <line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" strokeWidth="1" />
-          </svg>
-        </div>
       </div>
     </section>
   );
@@ -210,11 +191,6 @@ export function AgentsScroll() {
             }}
           />
 
-          <div className="absolute top-8 left-0 right-0 flex justify-between px-10 text-[10px] font-mono tracking-[0.4em] text-white/40 z-20">
-            <span>[ MEET YOUR ]</span>
-            <span>AVAILABLE NOW</span>
-          </div>
-
           {/* Center stage */}
           <div className="absolute inset-0 flex items-center justify-center">
             {/* Initial dot */}
@@ -229,11 +205,8 @@ export function AgentsScroll() {
                 scale: wordScale,
                 opacity: wordOpacity,
                 fontSize: "20vw",
-                fontFamily: '"Cormorant Garamond", "Playfair Display", Georgia, serif',
-                fontWeight: 500,
-                fontStyle: "italic",
               }}
-              className="font-black tracking-[-0.04em] leading-none text-white select-none"
+              className="font-display italic tracking-[-0.04em] leading-none text-white select-none"
             >
               AGENTS
             </motion.h2>
@@ -255,36 +228,26 @@ export function AgentsScroll() {
                 <p className="mb-3 text-[10px] font-mono tracking-[0.34em] text-white/48">
                   {c.tag}
                 </p>
-                <h3 className="mb-2 text-2xl font-black tracking-tight">{c.title}</h3>
+                <h3 className="mb-2 text-2xl font-display tracking-tight">{c.title}</h3>
                 <p className="text-sm leading-relaxed text-white/66">{c.body}</p>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Bottom status bar */}
-          <div className="absolute bottom-6 left-0 right-0 flex justify-between px-10 text-[10px] font-mono text-white/30 z-20">
-            <span>CONDUENCE CORE</span>
-            <span>SCROLL ↓</span>
-          </div>
         </div>
       </section>
 
       {/* Coda: agent voice */}
       <section className="relative py-40 px-6 bg-black text-white overflow-hidden">
         <div className="mx-auto max-w-7xl text-center">
-          <div className="mb-16 flex justify-center">
-            <svg width="40" height="40" viewBox="0 0 40 40" className="text-white">
-              <line x1="20" y1="4" x2="20" y2="36" stroke="currentColor" strokeWidth="1" />
-              <line x1="4" y1="20" x2="36" y2="20" stroke="currentColor" strokeWidth="1" />
-            </svg>
-          </div>
+        
 
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="mx-auto max-w-4xl text-balance text-2xl sm:text-4xl font-black uppercase tracking-tight leading-tight"
+            className="mx-auto max-w-4xl text-balance font-display text-2xl sm:text-4xl uppercase tracking-tight leading-tight"
           >
             I see, I think, I move and now, I talk.
             <br />
@@ -314,10 +277,8 @@ export function Workflow() {
   return (
     <section id="workflow" className="relative py-32 px-6 bg-white text-black">
       <div className="mx-auto max-w-6xl">
-        <p className="text-[10px] font-semibold tracking-[0.4em] text-black/50 mb-6">
-          [ WORKFLOW FREEDOM ]
-        </p>
-        <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-balance max-w-3xl">
+        
+        <h2 className="text-4xl sm:text-6xl font-display tracking-tight text-balance max-w-3xl">
           Anyone can create their own workflow.
         </h2>
         <div className="mt-16 border border-black/15 p-8 sm:p-12">
@@ -350,7 +311,7 @@ export function CTA() {
   return (
     <section id="cta" className="relative py-32 px-6 bg-black text-white">
       <div className="mx-auto max-w-4xl text-center">
-        <h2 className="text-5xl sm:text-7xl font-black tracking-tight text-balance">
+        <h2 className="text-5xl sm:text-7xl font-display tracking-tight text-balance">
           Trade with the agents.
           <br />
           <span className="text-white/40">Not against them.</span>

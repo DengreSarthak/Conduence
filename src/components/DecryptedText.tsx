@@ -29,7 +29,8 @@ export default function DecryptedText({
   encryptedClassName = "",
   animateOn = "hover",
 }: Props) {
-  const [displayText, setDisplayText] = useState(text);
+  const safeText = text ?? "";
+  const [displayText, setDisplayText] = useState(safeText);
   const [isHovering, setIsHovering] = useState(false);
   const [isScrambling, setIsScrambling] = useState(false);
   const [revealedIndices, setRevealedIndices] = useState<Set<number>>(new Set());
@@ -37,11 +38,19 @@ export default function DecryptedText({
   const containerRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    setDisplayText(safeText);
+    setRevealedIndices(new Set());
+    setHasAnimated(false);
+    setIsHovering(false);
+    setIsScrambling(false);
+  }, [safeText]);
+
+  useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
     let currentIteration = 0;
 
     const getNextIndex = (revealed: Set<number>): number => {
-      const total = text.length;
+      const total = safeText.length;
       switch (revealDirection) {
         case "end":
           return total - 1 - revealed.size;
@@ -59,14 +68,14 @@ export default function DecryptedText({
     };
 
     const availableChars = useOriginalCharsOnly
-      ? Array.from(new Set(text.split(""))).filter((c) => c !== " ")
+      ? Array.from(new Set(safeText.split(""))).filter((c) => !/\s/.test(c))
       : characters.split("");
 
     const shuffleText = (original: string, revealed: Set<number>) =>
       original
         .split("")
         .map((ch, i) => {
-          if (ch === " ") return " ";
+          if (/\s/.test(ch)) return ch;
           if (revealed.has(i)) return original[i];
           return availableChars[Math.floor(Math.random() * availableChars.length)];
         })
@@ -77,36 +86,36 @@ export default function DecryptedText({
       interval = setInterval(() => {
         setRevealedIndices((prev) => {
           if (sequential) {
-            if (prev.size < text.length) {
+            if (prev.size < safeText.length) {
               const nextIndex = getNextIndex(prev);
               const next = new Set(prev);
               next.add(nextIndex);
-              setDisplayText(shuffleText(text, next));
+              setDisplayText(shuffleText(safeText, next));
               return next;
             }
             clearInterval(interval);
             setIsScrambling(false);
             return prev;
           }
-          setDisplayText(shuffleText(text, prev));
+          setDisplayText(shuffleText(safeText, prev));
           currentIteration++;
           if (currentIteration >= maxIterations) {
             clearInterval(interval);
             setIsScrambling(false);
-            setDisplayText(text);
+            setDisplayText(safeText);
           }
           return prev;
         });
       }, speed);
     } else {
-      setDisplayText(text);
+      setDisplayText(safeText);
       setRevealedIndices(new Set());
       setIsScrambling(false);
     }
     return () => clearInterval(interval);
   }, [
     isHovering,
-    text,
+    safeText,
     speed,
     maxIterations,
     sequential,
@@ -142,9 +151,9 @@ export default function DecryptedText({
 
   return (
     <span ref={containerRef} className={parentClassName} {...hoverProps}>
-      <span className="sr-only">{text}</span>
+      <span className="sr-only">{safeText}</span>
       <span aria-hidden="true">
-        {displayText.split("").map((ch, i) => {
+        {(displayText ?? safeText).split("").map((ch, i) => {
           const revealed = revealedIndices.has(i) || !isScrambling || !isHovering;
           return (
             <span key={i} className={revealed ? className : encryptedClassName}>

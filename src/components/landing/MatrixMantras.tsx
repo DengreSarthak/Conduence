@@ -4,14 +4,11 @@ import { useEffect, useRef, useState } from "react";
 import DecryptedText from "@/components/DecryptedText";
 
 const MANTRAS = [
-  "I act.",
-  "I think.",
-  "I question.",
-  "I read.",
-  "I ask.",
-  "I adapt.",
-  "I decide.",
-  "I execute.",
+  "I\u2002think",
+  "I\u2002question",
+  "I\u2002read",
+  "I\u2002decide",
+  "I\u2002execute",
 ];
 
 function MatrixCanvas() {
@@ -63,6 +60,8 @@ function MatrixCanvas() {
 export function MatrixMantras() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const safeIndex = Math.min(activeIndex, MANTRAS.length - 1);
+  const activeMantra = MANTRAS[safeIndex] ?? MANTRAS[0];
 
   useEffect(() => {
     const handler = () => {
@@ -102,21 +101,15 @@ export function MatrixMantras() {
         />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-          <p
-            className="mb-10 text-[10px] tracking-[0.4em] text-emerald-200/70"
-            style={{ fontFamily: '"Michroma", sans-serif' }}
-          >
-            [ AGENT VOICE · {String(activeIndex + 1).padStart(2, "0")} /{" "}
-            {String(MANTRAS.length).padStart(2, "0")} ]
-          </p>
+          
 
           <h2
-            className="font-black uppercase tracking-[-0.03em] leading-none"
+            className="font-display uppercase tracking-[-0.03em] leading-none"
             style={{ fontSize: "clamp(3.5rem, 14vw, 14rem)" }}
           >
             <DecryptedText
-              key={activeIndex}
-              text={MANTRAS[activeIndex]}
+              key={safeIndex}
+              text={activeMantra}
               animateOn="view"
               sequential
               revealDirection="start"
@@ -131,7 +124,7 @@ export function MatrixMantras() {
           </h2>
 
           <p className="mt-10 max-w-xl text-base text-white/55">
-            Not a script. Not a rule. A reasoning loop —
+            Not a script. Not a rule. A reasoning loop for the
             <br className="hidden sm:block" />
             agents that perceive, weigh, and move.
           </p>
@@ -142,7 +135,7 @@ export function MatrixMantras() {
               <span
                 key={i}
                 className={`h-1.5 w-6 rounded-full transition-all ${
-                  i === activeIndex ? "bg-emerald-300" : "bg-white/15"
+                  i === safeIndex ? "bg-emerald-300" : "bg-white/15"
                 }`}
               />
             ))}

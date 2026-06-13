@@ -21,24 +21,19 @@ export function Manifesto() {
 
       <div className="relative mx-auto max-w-7xl">
         {/* Leader not follower */}
-        <p
-          className="text-[10px] tracking-[0.4em] text-white/50 mb-8"
-          style={{ fontFamily: '"Michroma", sans-serif' }}
-        >
-          [ MANIFESTO ]
-        </p>
+        
 
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="text-balance font-black uppercase leading-[0.9] tracking-[-0.03em]"
+          className="text-balance font-display uppercase leading-[0.9] tracking-[-0.03em]"
           style={{ fontSize: "clamp(2.5rem, 8vw, 8rem)" }}
         >
           Don't be a follower.
           <br />
-          <span className="italic font-light">Be the signal</span> others copy.
+          <span className="font-normal italic">Be the signal</span> others copy.
         </motion.h2>
 
         <motion.p
@@ -48,7 +43,7 @@ export function Manifesto() {
           transition={{ duration: 0.9, delay: 0.2 }}
           className="mt-8 max-w-2xl text-lg text-white/60"
         >
-          Copy-trading puts you behind the move. Conduence puts you at the front of it — orchestrate
+          Copy-trading puts you behind the move. Conduence puts you at the front of it, Orchestrate
           the agents others end up watching.
         </motion.p>
 
@@ -58,10 +53,10 @@ export function Manifesto() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.3 }}
-          className="mt-24 max-w-4xl text-balance text-3xl sm:text-5xl font-black tracking-tight leading-[1.05]"
+          className="mt-24 max-w-4xl text-balance font-display text-3xl sm:text-5xl tracking-tight leading-[1.05]"
         >
           Turn your ideas into{" "}
-          <span className="italic font-light text-white/70">fully independent</span> market actors.{" "}
+          <span className="font-normal italic text-white/70">fully independent</span> market actors.{" "}
           <span className="text-white/40">No code.</span>
         </motion.p>
       </div>
