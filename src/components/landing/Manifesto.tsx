@@ -31,9 +31,9 @@ export function Manifesto() {
           className="text-balance font-display uppercase leading-[0.9] tracking-[-0.03em]"
           style={{ fontSize: "clamp(2rem, 5.5vw, 5.5rem)" }}
         >
-          Don't be a follower.{" "}
+          Don't be a follower,{" "}
           <span className="whitespace-nowrap">
-            <span className="font-normal italic">Be the signal</span> others copy.
+            <span className="font-normal italic">Be the signal</span> others copy
           </span>
         </motion.h2>
 

@@ -1,127 +1,204 @@
 "use client";
 
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 
-import { pillarFlowSrc, pillarGraphSrc, pillarMindSrc } from "@/lib/assets";
+import {
+  featCanvasSrc,
+  featConnectorsSrc,
+  featGraphSrc,
+  featMindSrc,
+  featObservabilitySrc,
+  featPaperSrc,
+} from "@/lib/assets";
 
 type Pillar = {
+  kicker: string;
   title: string;
   body: string;
-  help: string;
-  image: { url: string };
+  image: string;
 };
 
 const pillars: Pillar[] = [
   {
-    title: "Agentic Recall",
-    body: "Agents traverse their own history at low latency — past calls, live positions, the reasoning behind every move. Paired with a relation graph you author together with an LLM, mapping how real-world events influence each other. Positive weights mean directly proportional. Negative weights mean inversely proportional.",
-    help: "Agents stop guessing cause and effect. Less assumption, more informed decisions.",
-    image: pillarGraphSrc,
+    kicker: "RELATION GRAPH",
+    title: "Agentic Knowledge Graph",
+    body: "A graph of how real-world events influence each other, authored by you. The orchestrator agent traverses it in milliseconds instead of reasoning from scratch — so your perspective, your edges, your weights become the agent's intuition. Reasoning drops from seconds to milliseconds.",
+    image: featGraphSrc,
   },
   {
-    title: "Mind",
-    body: "Creators deploy their strategies and heavy daily work — news analysis, arbitrage scouting, mispricing detection — as Mind Agents. Plug them into your workflow instead of spinning up your own compute for the same task.",
-    help: "Specialist intelligence, on tap. Pay for the edge, not the GPU bill.",
-    image: pillarMindSrc,
+    kicker: "SIMULATION",
+    title: "Paper Trading",
+    body: "Test a strategy or an entire AI-agent workflow against live Polymarket and Kalshi data — without putting real money on the line. Validate edge, debug behavior, and tune parameters before going live.",
+    image: featPaperSrc,
   },
   {
+    kicker: "OBSERVABILITY",
+    title: "Trade Observability",
+    body: "Every trade rendered as a graph: which agent called which tool, what each returned, cost per tool call, cost per Mind Agent, and the full decision path. Backtrack any move and pinpoint exactly where things went right — or wrong.",
+    image: featObservabilitySrc,
+  },
+  {
+    kicker: "BUILDER",
     title: "Canvas",
-    body: "Generate a complete workflow from a single prompt with the AI builder, or compose it block by block on the drag-and-drop canvas. Wire data, agents, tools, and execution without writing a single line of code. We also provide a simulator for paper trading so you can test strategies risk-free before going live.",
-    help: "From idea to live agent in minutes, not weeks.",
-    image: pillarFlowSrc,
+    body: "Compose your own agent workflow on a drag-and-drop canvas. Pre-loaded tools, sub-agent templates, the orchestrator, and Mind Agents — wire them together without writing a single line of code. Explore the strategy that works best for you.",
+    image: featCanvasSrc,
+  },
+  {
+    kicker: "MARKETPLACE",
+    title: "Mind Agents",
+    body: "We extract the complexity so anyone can use the final product through micropayments. Monetize your strategy or your entire workflow as a Mind Agent. Subscribe to one and plug it into your own workflow, or run it standalone. With Mind Agents that emit trades, you're live within minutes.",
+    image: featMindSrc,
+  },
+  {
+    kicker: "CONNECTORS",
+    title: "Telegram & Discord",
+    body: "Connect Telegram and Discord to your workflow. Get trade signals and event alerts where you already are — so you can take command while away from the dashboard. When your agent finds an opportunity, verify it and execute in one tap. You stay in full control.",
+    image: featConnectorsSrc,
   },
 ];
 
-export function Pillars() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
-  const [active, setActive] = useState(0);
+const DURATION = 7000;
 
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    const idx = v < 0.34 ? 0 : v < 0.67 ? 1 : 2;
-    if (idx !== active) setActive(idx);
-  });
+export function Pillars() {
+  const [active, setActive] = useState(0);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    setProgress(0);
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const p = Math.min(1, (now - start) / DURATION);
+      setProgress(p);
+      if (p < 1) raf = requestAnimationFrame(tick);
+      else setActive((a) => (a + 1) % pillars.length);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [active]);
+
+  const current = pillars[active];
 
   return (
-    <section ref={ref} className="relative bg-black text-white" style={{ height: "340vh" }}>
-      <div className="sticky top-0 h-screen overflow-hidden flex items-center">
-        {pillars.map((p, i) => (
-          <Spread key={p.title} pillar={p} active={i === active} />
-        ))}
+    <section id="pillars" className="relative bg-white text-black">
+      <div className="border-b border-black/10">
+        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-5 font-mono text-[10px] tracking-[0.34em] text-black/50 sm:px-10">
+          <span>&rang;&nbsp;&nbsp;PRODUCT CATALOG</span>
+          <span>
+            [{String(active + 1).padStart(2, "0")}/{String(pillars.length).padStart(2, "0")}]
+          </span>
+        </div>
+      </div>
 
-        {/* step indicators */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-3">
-          {pillars.map((_, i) => (
-            <div
-              key={i}
-              className={`h-1 transition-all duration-500 ${
-                i === active ? "w-10 bg-white" : "w-4 bg-white/25"
-              }`}
-            />
-          ))}
+      <div className="mx-auto grid max-w-[1500px] grid-cols-12 gap-x-10 gap-y-10 px-6 py-10 md:py-14 sm:px-10">
+        <div className="col-span-12 flex flex-col md:col-span-5">
+          <h2 className="font-display text-3xl leading-[1.05] tracking-tight md:text-4xl lg:text-5xl">
+            Everything you need to
+            <br />
+            <span className="font-normal italic text-black/45">ship agents that trade.</span>
+          </h2>
+
+          <ul className="mt-8 flex flex-col">
+            {pillars.map((p, i) => {
+              const isActive = i === active;
+              return (
+                <li key={p.title} className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setActive(i)}
+                    className="grid w-full grid-cols-[48px_1fr_16px] items-center gap-4 border-t border-black/10 py-4 text-left"
+                  >
+                    <span
+                      className={`font-mono text-xs tracking-[0.2em] transition-colors ${
+                        isActive ? "text-black" : "text-black/35"
+                      }`}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className={`text-base transition-colors md:text-lg ${
+                        isActive ? "font-semibold text-black" : "font-medium text-black/55"
+                      }`}
+                    >
+                      {p.title}
+                    </span>
+                    <span
+                      className={`h-1.5 w-1.5 rounded-sm transition-colors ${
+                        isActive ? "bg-black" : "bg-transparent"
+                      }`}
+                    />
+                  </button>
+                  <div className="absolute -bottom-px left-0 right-0 h-px overflow-hidden bg-transparent">
+                    {isActive && (
+                      <div
+                        className="h-full bg-black"
+                        style={{ width: `${progress * 100}%` }}
+                      />
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+            <li className="border-t border-black/10" />
+          </ul>
+        </div>
+
+        <div className="col-span-12 md:col-span-7">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.title}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col"
+            >
+              <div className="relative aspect-[16/7] w-full overflow-hidden rounded-sm border border-black/10 bg-white">
+                <div
+                  className="pointer-events-none absolute inset-0 opacity-[0.4]"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)",
+                    backgroundSize: "32px 32px",
+                  }}
+                />
+                <img
+                  src={current.image}
+                  alt={current.title}
+                  loading="lazy"
+                  width={1280}
+                  height={720}
+                  className="absolute inset-0 h-full w-full object-contain p-4"
+                />
+                {[
+                  "top-2.5 left-2.5",
+                  "top-2.5 right-2.5",
+                  "bottom-2.5 left-2.5",
+                  "bottom-2.5 right-2.5",
+                ].map((pos) => (
+                  <span
+                    key={pos}
+                    className={`absolute ${pos} h-1 w-1 bg-black/40`}
+                  />
+                ))}
+              </div>
+
+              <div className="mt-6">
+                <p className="mb-3 font-mono text-[10px] tracking-[0.34em] text-black/50">
+                  {String(active + 1).padStart(2, "0")} &middot; {current.kicker}
+                </p>
+                <h3 className="font-display text-2xl tracking-tight md:text-3xl">
+                  {current.title}
+                </h3>
+                <p className="mt-4 max-w-[60ch] text-base leading-relaxed text-black/60">
+                  {current.body}
+                </p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
-  );
-}
-
-function Spread({ pillar, active }: { pillar: Pillar; active: boolean }) {
-  return (
-    <motion.div
-      initial={false}
-      animate={{ opacity: active ? 1 : 0 }}
-      transition={{ duration: 0.55, ease: "easeOut" }}
-      className="absolute inset-0 flex items-center"
-      style={{ pointerEvents: active ? "auto" : "none" }}
-    >
-      <div className="relative h-full w-full max-w-[1500px] mx-auto px-6 sm:px-10 grid grid-cols-12 gap-x-8 items-center">
-        {/* LEFT — text */}
-        <motion.div
-          initial={false}
-          animate={{ y: active ? 0 : 30, opacity: active ? 1 : 0 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.05 }}
-          className="col-span-12 md:col-span-5 flex flex-col gap-6"
-        >
-          <h3 className="font-display text-4xl md:text-5xl lg:text-6xl leading-[1.02] tracking-tight">
-            {pillar.title}
-          </h3>
-          <p className="text-base md:text-lg text-white/70 leading-relaxed max-w-[48ch]">
-            {pillar.body}
-          </p>
-          <div className="mt-2 pt-5 border-t border-white/20 max-w-[48ch]">
-            <p className="font-mono text-[10px] tracking-[0.3em] text-white/50 mb-2">
-              HOW IT HELPS THE AGENT
-            </p>
-            <p className="text-base md:text-lg font-medium leading-snug text-white">
-              {pillar.help}
-            </p>
-          </div>
-        </motion.div>
-
-        {/* RIGHT — image */}
-        <motion.div
-          initial={false}
-          animate={{
-            y: active ? 0 : 60,
-            opacity: active ? 1 : 0,
-            scale: active ? 1 : 0.96,
-          }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="hidden md:flex col-span-7 items-center justify-center"
-        >
-          <img
-            src={pillar.image.url}
-            alt={pillar.title}
-            loading="lazy"
-            width={1024}
-            height={1024}
-            className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
-            style={{ maxHeight: "75vh", maxWidth: "100%" }}
-            draggable={false}
-          />
-        </motion.div>
-      </div>
-    </motion.div>
   );
 }

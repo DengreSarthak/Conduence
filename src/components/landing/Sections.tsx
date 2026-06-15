@@ -21,13 +21,12 @@ export function Reasoning() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="text-balance font-display uppercase leading-[0.95] tracking-[-0.02em]"
-          style={{ fontSize: "clamp(2rem, 5.5vw, 5.5rem)" }}
+          className="mx-auto flex max-w-5xl flex-col items-center gap-1 font-display uppercase leading-[1.05] tracking-[-0.02em]"
+          style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.75rem)" }}
         >
-          The edge isn't the position.
-          <br />
-          <span className="whitespace-nowrap">
-            It's the timely <span className="font-normal italic">execution</span>
+          <span className="text-center">The edge is not the position itself,</span>
+          <span className="whitespace-nowrap text-center">
+            it's <span className="font-normal italic">everything underneath it.</span>
           </span>
         </motion.h2>
       </div>
