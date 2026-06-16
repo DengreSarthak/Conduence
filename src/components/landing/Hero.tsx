@@ -34,12 +34,12 @@ export function Hero() {
         }}
       />
 
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-5xl translate-y-12 flex-col items-center justify-center px-8 text-center md:translate-y-26">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-5xl translate-y-6 flex-col items-center justify-center px-section text-center sm:translate-y-10 md:translate-y-16 lg:translate-y-20">
         <motion.h1
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.05, ease: "easeOut" }}
-          className="max-w-4xl text-balance font-display text-5xl leading-[0.95] tracking-[-0.02em] text-white md:text-[5.5rem] lg:text-[6.25rem]"
+          className="text-display-hero max-w-4xl text-balance font-display leading-[0.95] tracking-[-0.02em] text-white"
         >
           AI Agents
           <br />
@@ -50,7 +50,7 @@ export function Hero() {
           initial={false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.12, ease: "easeOut" }}
-          className="mt-8 max-w-xl text-base leading-relaxed text-white/78 md:text-lg"
+          className="text-body-fluid mt-6 max-w-xl leading-relaxed text-white/78 sm:mt-8"
         >
           Prediction market orchestration at agentic speed with you in control.
         </motion.p>
@@ -63,7 +63,7 @@ export function Hero() {
         >
           <a
             href="#cta"
-            className="group relative inline-flex items-center gap-3 rounded-full border border-white/30 bg-white/10 px-7 py-3.5 text-sm font-medium tracking-wide text-white backdrop-blur-md transition hover:bg-white hover:text-black"
+            className="group relative inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-5 py-3 text-sm font-medium tracking-wide text-white backdrop-blur-md transition hover:bg-white hover:text-black sm:gap-3 sm:px-7 sm:py-3.5"
           >
             Join Waitlist
             <span className="transition-transform group-hover:translate-x-1">→</span>

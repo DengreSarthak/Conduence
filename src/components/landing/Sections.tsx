@@ -10,9 +10,12 @@ import { logoWhiteSrc } from "@/lib/assets";
    ============================================================ */
 export function Reasoning() {
   return (
-    <section id="core-insight" className="relative py-40 px-6 bg-white text-black overflow-hidden">
-      <div className="mx-auto max-w-7xl text-center mb-16">
-        <p className="text-[10px] font-semibold tracking-[0.4em] text-black/50 mb-10">
+    <section
+      id="core-insight"
+      className="relative py-section px-section bg-white text-black overflow-hidden"
+    >
+      <div className="mx-auto max-w-7xl text-center mb-10 sm:mb-16">
+        <p className="text-[10px] font-semibold tracking-[0.4em] text-black/50 mb-6 sm:mb-10">
           [ CORE INSIGHT ]
         </p>
 
@@ -21,11 +24,10 @@ export function Reasoning() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.9, ease: "easeOut" }}
-          className="mx-auto flex max-w-5xl flex-col items-center gap-1 font-display uppercase leading-[1.05] tracking-[-0.02em]"
-          style={{ fontSize: "clamp(1.75rem, 4.5vw, 4.75rem)" }}
+          className="text-display-section mx-auto flex max-w-5xl flex-col items-center gap-1 font-display uppercase leading-[1.05] tracking-[-0.02em]"
         >
           <span className="text-center">The edge is not the position itself,</span>
-          <span className="whitespace-nowrap text-center">
+          <span className="text-center sm:whitespace-nowrap">
             it's <span className="font-normal italic">everything underneath it.</span>
           </span>
         </motion.h2>
@@ -109,9 +111,8 @@ export function AgentsScroll() {
               style={{
                 scale: wordScale,
                 opacity: wordOpacity,
-                fontSize: "20vw",
               }}
-              className="font-display italic tracking-[-0.04em] leading-none text-white select-none"
+              className="font-display text-[10vw] italic tracking-[-0.04em] leading-none text-white select-none sm:text-[vw] md:text-[12vw] lg:text-[20vw]"
             >
               AGENTS
             </motion.h2>
@@ -138,15 +139,12 @@ export function AgentsScroll() {
               </motion.div>
             ))}
           </motion.div>
-
         </div>
       </section>
 
       {/* Coda: agent voice */}
       <section className="relative py-40 px-6 bg-black text-white overflow-hidden">
         <div className="mx-auto max-w-7xl text-center">
-        
-
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -214,7 +212,7 @@ export function CTA() {
    ============================================================ */
 export function Footer() {
   return (
-    <footer className="bg-black text-white pt-20 pb-10 px-6 overflow-hidden">
+    <footer className="bg-black text-white pt-12 pb-8 px-section overflow-hidden sm:pt-16 md:pt-20 md:pb-10">
       <div className="mx-auto max-w-[1600px]">
         {/* GIANT WORDMARK — centered logo */}
         <div className="flex justify-center">

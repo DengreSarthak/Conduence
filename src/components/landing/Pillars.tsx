@@ -90,7 +90,7 @@ export function Pillars() {
   return (
     <section id="pillars" className="relative bg-white text-black">
       <div className="border-b border-black/10">
-        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-6 py-5 font-mono text-[10px] tracking-[0.34em] text-black/50 sm:px-10">
+        <div className="mx-auto flex max-w-[1500px] items-center justify-between px-section py-4 font-mono text-[10px] tracking-[0.34em] text-black/50 sm:py-5">
           <span>&rang;&nbsp;&nbsp;PRODUCT CATALOG</span>
           <span>
             [{String(active + 1).padStart(2, "0")}/{String(pillars.length).padStart(2, "0")}]
@@ -98,9 +98,9 @@ export function Pillars() {
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-[1500px] grid-cols-12 gap-x-10 gap-y-10 px-6 py-10 md:py-14 sm:px-10">
+      <div className="mx-auto grid max-w-[1500px] grid-cols-12 gap-x-6 gap-y-8 px-section py-8 sm:gap-x-10 sm:gap-y-10 sm:py-10 md:py-14">
         <div className="col-span-12 flex flex-col md:col-span-5 md:-mt-3 lg:-mt-4">
-          <h2 className="font-display text-3xl leading-[1.05] tracking-tight md:text-4xl lg:text-5xl">
+          <h2 className="text-display-pillar font-display leading-[1.05] tracking-tight">
             Everything you need to
             <br />
             <span className="font-normal italic text-black/45">ship agents that trade.</span>
@@ -124,7 +124,7 @@ export function Pillars() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span
-                      className={`text-base transition-colors md:text-lg ${
+                      className={`text-body-fluid transition-colors ${
                         isActive ? "font-semibold text-black" : "font-medium text-black/55"
                       }`}
                     >
@@ -133,10 +133,7 @@ export function Pillars() {
                   </button>
                   <div className="absolute -bottom-px left-0 right-0 h-px overflow-hidden bg-transparent">
                     {isActive && (
-                      <div
-                        className="h-full bg-black"
-                        style={{ width: `${progress * 100}%` }}
-                      />
+                      <div className="h-full bg-black" style={{ width: `${progress * 100}%` }} />
                     )}
                   </div>
                 </li>
@@ -179,10 +176,7 @@ export function Pillars() {
                   "bottom-2.5 left-2.5",
                   "bottom-2.5 right-2.5",
                 ].map((pos) => (
-                  <span
-                    key={pos}
-                    className={`absolute ${pos} h-1 w-1 bg-black/40`}
-                  />
+                  <span key={pos} className={`absolute ${pos} h-1 w-1 bg-black/40`} />
                 ))}
               </div>
 
@@ -190,10 +184,8 @@ export function Pillars() {
                 <p className="mb-3 font-mono text-[10px] tracking-[0.34em] text-black/50">
                   {String(active + 1).padStart(2, "0")} &middot; {current.kicker}
                 </p>
-                <h3 className="font-display text-2xl tracking-tight md:text-3xl">
-                  {current.title}
-                </h3>
-                <p className="mt-4 max-w-[60ch] text-base leading-relaxed text-black/60">
+                <h3 className="text-display-pillar font-display tracking-tight">{current.title}</h3>
+                <p className="text-body-fluid mt-4 max-w-[60ch] leading-relaxed text-black/60">
                   {current.body}
                 </p>
               </div>

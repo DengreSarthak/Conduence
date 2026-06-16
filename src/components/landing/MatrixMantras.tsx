@@ -101,11 +101,9 @@ export function MatrixMantras() {
         />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-          
-
           <h2
             className="font-display uppercase tracking-[-0.03em] leading-none"
-            style={{ fontSize: "clamp(3.5rem, 14vw, 14rem)" }}
+            style={{ fontSize: "clamp(2.5rem, 12vw, 14rem)" }}
           >
             <DecryptedText
               key={safeIndex}
