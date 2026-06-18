@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
    ============================================================ */
 export function Manifesto() {
   return (
-    <section className="relative overflow-hidden bg-white text-black py-section px-section">
+    <section id="manifesto" className="relative overflow-hidden bg-white text-black px-section py-[clamp(3rem,7vw,7.5rem)]">
       {/* Ambient grid */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.06]"
@@ -19,7 +19,7 @@ export function Manifesto() {
         }}
       />
 
-      <div className="relative mx-auto max-w-7xl mt-8 sm:mt-12 md:mt-20">
+      <div className="relative mx-auto max-w-7xl mt-4 sm:mt-6 md:mt-10">
         {/* Leader not follower */}
 
         <motion.h2
@@ -68,6 +68,15 @@ export function Manifesto() {
             Many strategies. <span className="font-normal italic">One mind.</span>
           </p>
         </motion.div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, delay: 0.2 }}
+          className="text-body-fluid mt-6 max-w-2xl text-black/60 sm:mt-8"
+        >
+          Traders may not live forever, but how they trade will.
+        </motion.p>
       </div>
     </section>
   );
