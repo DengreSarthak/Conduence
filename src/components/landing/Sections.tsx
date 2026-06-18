@@ -53,40 +53,35 @@ export function AgentsScroll() {
 
   const concepts = [
     {
-      tag: "TOOLS",
-      title: "Preloaded primitives",
-      body: "Market data, news feeds, charting, and venue APIs, ready to wire into any agent without building integrations from scratch.",
+      title: "Query the mind",
+      body: "Before every decision, the agent consults your mind graph. It finds all correlated nodes, weighs your connections, and reasons inside your worldview, not from scratch.",
       pos: "left-[6%] top-[16%]",
     },
     {
-      tag: "SUB AGENT TEMPLATES",
-      title: "Start from proven roles",
-      body: "Research, sizing, execution, and analysis templates you can fork, remix, and drop onto the canvas in seconds.",
+      title: "Trade logs",
+      body: "Every trade logs its reasoning and exit rules to your graph. If the market turns, the agent knows when to exit, and you can update those rules anytime.",
       pos: "right-[6%] top-[16%]",
     },
     {
-      tag: "MIND AGENTS",
-      title: "Specialist intelligence",
-      body: "Subscribe to creator built agents for news, arbitrage, and mispricing. Plug them in instead of running your own compute.",
+      title: "Learning loop",
+      body: "The agent studies your mind graph and trade graph together. Past mistakes you flagged become encoded intuition. Every new decision is sharper than the last.",
       pos: "left-[6%] bottom-[16%]",
     },
     {
-      tag: "CONNECTORS",
-      title: "Telegram & Discord",
-      body: "Get trade signals and event alerts where you already are. Verify and execute in one tap. Full control, even away from the dashboard.",
+      title: "Wire any market tool",
+      body: "Connect any prediction market data source, news feed, or venue API. Your orchestrator ingests it in milliseconds, so your agents reason with faster, better information.",
       pos: "right-[6%] bottom-[16%]",
     },
   ];
 
   return (
-    <>
-      <section
-        id="agents"
-        ref={ref}
-        className="relative bg-black text-white"
-        style={{ height: "320vh" }}
-      >
-        <div className="sticky top-0 h-screen overflow-hidden">
+    <section
+      id="agents"
+      ref={ref}
+      className="relative bg-black text-white"
+      style={{ height: "320vh" }}
+    >
+      <div className="sticky top-0 h-screen overflow-hidden">
           {/* Subtle grid */}
           <div
             className="absolute inset-0 opacity-[0.07]"
@@ -125,51 +120,19 @@ export function AgentsScroll() {
           >
             {concepts.map((c, i) => (
               <motion.div
-                key={c.tag}
+                key={c.title}
                 initial={false}
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 5 + i * 0.4, repeat: Infinity, ease: "easeInOut" }}
                 className={`absolute ${c.pos} w-[22rem] border border-white/15 bg-white/[0.04] p-6 backdrop-blur-sm`}
               >
-                <p className="mb-3 text-[10px] font-mono tracking-[0.34em] text-white/48">
-                  {c.tag}
-                </p>
                 <h3 className="mb-2 text-2xl font-display tracking-tight">{c.title}</h3>
                 <p className="text-sm leading-relaxed text-white/66">{c.body}</p>
               </motion.div>
             ))}
           </motion.div>
         </div>
-      </section>
-
-      {/* Coda: agent voice */}
-      <section className="relative py-40 px-6 bg-black text-white overflow-hidden">
-        <div className="mx-auto max-w-7xl text-center">
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9 }}
-            className="mx-auto max-w-4xl text-balance font-display text-2xl sm:text-4xl uppercase tracking-tight leading-tight"
-          >
-            I see, I think, I move and now, I Execute.
-            <br />
-            I'm fully autonomous. I'm alive.
-          </motion.p>
-
-          <div className="mt-12 flex justify-center gap-2">
-            {["24", "7"].map((n) => (
-              <div
-                key={n}
-                className="h-14 w-14 rounded-full border border-white grid place-items-center font-mono text-sm font-bold"
-              >
-                {n}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
+    </section>
   );
 }
 

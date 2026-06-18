@@ -5,7 +5,7 @@ import { Hero } from "@/components/landing/Hero";
 import { Pillars } from "@/components/landing/Pillars";
 import { Reasoning, AgentsScroll, CTA, Footer } from "@/components/landing/Sections";
 import { Manifesto } from "@/components/landing/Manifesto";
-import { MatrixMantras } from "@/components/landing/MatrixMantras";
+import { MatrixMantras, AgentVoice } from "@/components/landing/MatrixMantras";
 
 export const metadata: Metadata = {
   title: "CONDUENCE. AI agents that think with you",
@@ -23,8 +23,9 @@ export default function HomePage() {
       <Nav />
       <Hero />
       <Reasoning />
-      <Manifesto />
       <MatrixMantras />
+      <AgentVoice />
+      <Manifesto />
       <AgentsScroll />
       <Pillars />
       <CTA />

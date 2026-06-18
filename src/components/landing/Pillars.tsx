@@ -21,27 +21,22 @@ type Pillar = {
 };
 
 const pillars: Pillar[] = [
+
   {
     kicker: "RELATION GRAPH",
-    title: "Agentic Knowledge Graph",
-    body: "A graph of how real world events influence each other, authored by you. The orchestrator agent traverses it in milliseconds instead of reasoning from scratch, so your perspective, your edges, your weights become the agent's intuition. Reasoning drops from seconds to milliseconds.",
+    title: "Mind Mesh",
+    body: "You control the orchestrator mind. You shape its view of the world, its reasoning, the factors that matter, and how they relate. It traverses that structure in milliseconds instead of reasoning from scratch, so your perspective, your edges, and your weights become its intuition.",
     image: featGraphSrc,
   },
   {
-    kicker: "SIMULATION",
-    title: "Paper Trading",
-    body: "Test a strategy or an entire AI agent workflow against live Polymarket and Kalshi data, without putting real money on the line. Validate edge, debug behavior, and tune parameters before going live.",
-    image: featPaperSrc,
-  },
-  {
-    kicker: "OBSERVABILITY",
-    title: "Trade Observability",
-    body: "We use LangSmith to render every trade as a graph: which agent called which tool, what each returned, cost per tool call, cost per Mind Agent, and the full decision path. Backtrack any move and pinpoint exactly where things went right, or wrong.",
+    kicker: "Retracing trades",
+    title: "Retrace",
+    body: "Every trade is a path you can trace: which agent called which tool, what each returned, cost per call, cost per Mind Agent, and the full decision path. The exit rules set by the orchestrator at entry live there too, and you can change them anytime. Find something wrong? Flag it. The orchestrator's mind absorbs that correction, and its next intuition carries the lesson.",
     image: featObservabilitySrc,
   },
   {
     kicker: "BUILDER",
-    title: "Canvas",
+    title: "Agent Studio",
     body: "Compose your own agent workflow on a drag and drop canvas. Preloaded tools, sub agent templates, the orchestrator, and Mind Agents. Wire them together without writing a single line of code. Explore the strategy that works best for you.",
     image: featCanvasSrc,
   },
@@ -52,16 +47,16 @@ const pillars: Pillar[] = [
     image: featMindSrc,
   },
   {
-    kicker: "BYOS",
-    title: "Bring Your Own Strategy",
-    body: "Bring your own strategy and we handle the rest: building the AI agent workflow, publishing it, and making it available to other users. We keep a small percentage of revenue. You earn the rest. Your strategy stays private.",
-    image: featByosSrc,
-  },
-  {
     kicker: "CONNECTORS",
     title: "Connectors",
     body: "Connect Telegram and Discord to your workflow. Get trade signals and event alerts where you already are, so you can take command while away from the dashboard. When your agent finds an opportunity, verify it and execute in one tap. You stay in full control.",
     image: featConnectorsSrc,
+  },
+  {
+    kicker: "SIMULATION",
+    title: "Simulator",
+    body: "Test a strategy or an entire AI agent workflow against live Polymarket and Kalshi data, without putting real money on the line. Validate edge, debug behavior, and tune parameters before going live.",
+    image: featPaperSrc,
   },
 ];
 
@@ -106,7 +101,7 @@ export function Pillars() {
             <span className="font-normal italic text-black/45">ship agents that trade.</span>
           </h2>
 
-          <ul className="mt-8 flex flex-col">
+          <ul className="mt-12 flex flex-col sm:mt-14">
             {pillars.map((p, i) => {
               const isActive = i === active;
               return (
@@ -143,7 +138,7 @@ export function Pillars() {
           </ul>
         </div>
 
-        <div className="col-span-12 md:col-span-7 md:mt-4 lg:mt-6">
+        <div className="col-span-12 md:col-span-7 md:-mt-2 lg:-mt-3">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.title}

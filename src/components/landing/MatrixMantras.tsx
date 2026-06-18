@@ -1,14 +1,15 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import DecryptedText from "@/components/DecryptedText";
 
 const MANTRAS = [
+  "I\u2002recall",
   "I\u2002think",
-  "I\u2002question",
-  "I\u2002read",
   "I\u2002decide",
   "I\u2002execute",
+  "I\u2002remember",
 ];
 
 function MatrixCanvas() {
@@ -133,6 +134,58 @@ export function MatrixMantras() {
             ))}
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
+   AGENT VOICE — coda after agents scroll
+   ============================================================ */
+export function AgentVoice() {
+  return (
+    <section className="relative overflow-hidden bg-black px-section py-section text-white">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.05]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.55) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.55) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+          maskImage: "radial-gradient(ellipse at center, black 15%, transparent 70%)",
+        }}
+      />
+
+      <div className="relative mx-auto max-w-4xl text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          className="text-display-medium font-display tracking-tight leading-[1.12]"
+        >
+          <span className="block">I am your reasoning and your attention,</span>
+          <span className="block">
+            <span className="font-normal italic text-white/55">scaled past every limit.</span>
+          </span>
+          <span className="mt-3 block sm:mt-4">We move as one.</span>
+        </motion.h2>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mt-12 flex justify-center gap-2 sm:mt-16"
+        >
+          {["24", "7"].map((n) => (
+            <div
+              key={n}
+              className="grid h-14 w-14 place-items-center rounded-full border border-white font-mono text-sm font-bold"
+            >
+              {n}
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

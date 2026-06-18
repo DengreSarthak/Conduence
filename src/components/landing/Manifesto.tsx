@@ -7,13 +7,13 @@ import { motion } from "framer-motion";
    ============================================================ */
 export function Manifesto() {
   return (
-    <section className="relative overflow-hidden bg-black text-white py-section px-section">
+    <section className="relative overflow-hidden bg-white text-black py-section px-section">
       {/* Ambient grid */}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
+            "linear-gradient(rgba(0,0,0,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.6) 1px, transparent 1px)",
           backgroundSize: "64px 64px",
           maskImage: "radial-gradient(ellipse at center, black 20%, transparent 75%)",
         }}
@@ -40,24 +40,34 @@ export function Manifesto() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.2 }}
-          className="text-body-fluid mt-6 max-w-2xl text-white/60 sm:mt-8"
+          className="text-body-fluid mt-6 max-w-2xl text-black/60 sm:mt-8"
         >
           Copy trading puts you behind the move. Conduence puts you at the front of it, Orchestrate
           the agents others end up watching.
         </motion.p>
 
         {/* Closing line */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, delay: 0.3 }}
-          className="text-display-medium mt-12 max-w-4xl text-balance font-display tracking-tight leading-[1.05] sm:mt-16 md:mt-24"
+          className="mt-12 sm:mt-16 md:mt-24"
         >
-          Turn your ideas into{" "}
-          <span className="font-normal italic text-white/70">fully independent</span> market actors.{" "}
-          <span className="text-white/40">No code.</span>
-        </motion.p>
+          <p className="text-display-medium font-display tracking-tight leading-[1.08]">
+            <span className="block sm:whitespace-nowrap">
+              Turn strategies into{" "}
+              <span className="font-normal italic text-black/70">fully independent autonomous</span>
+            </span>
+            <span className="block">
+              market actors. <span className="text-black/40">No code.</span>
+            </span>
+          </p>
+
+          <p className="text-display-medium mt-8 border-t border-black/10 pt-8 font-display tracking-tight leading-[1.08] sm:mt-10 sm:pt-10">
+            Many strategies. <span className="font-normal italic">One mind.</span>
+          </p>
+        </motion.div>
       </div>
     </section>
   );

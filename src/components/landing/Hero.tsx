@@ -43,7 +43,7 @@ export function Hero() {
         >
           AI Agents
           <br />
-          <em className="font-display font-normal italic">that think like you</em>
+          <em className="font-display font-normal italic">that trade like you</em>
         </motion.h1>
 
         <motion.p
@@ -52,7 +52,8 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.12, ease: "easeOut" }}
           className="text-body-fluid mt-6 max-w-xl leading-relaxed text-white/78 sm:mt-8"
         >
-          Prediction market orchestration at agentic speed with you in control.
+          Orchestrate AI agents that learn your perspective, mirror your reasoning, on your
+          terms.
         </motion.p>
 
         <motion.div

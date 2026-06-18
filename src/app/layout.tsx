@@ -26,6 +26,10 @@ export const metadata: Metadata = {
     template: "%s | CONDUENCE",
   },
   description: "AI agents that think with you.",
+  icons: {
+    icon: "/images/ConduenceLogo.jpeg",
+    apple: "/images/ConduenceLogo.jpeg",
+  },
   openGraph: {
     title: "CONDUENCE",
     description: "AI agents that think with you.",
